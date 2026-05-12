@@ -71,14 +71,9 @@ void Expand(char show[ROWS][COLS],char mine[ROWS][COLS],int row,int col,int x,in
         show[x][y]=count+'0';
 }
 
-void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS],int row,int col){
-    int x=0;
-    int y=0;
-
+void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS],int row,int col,int x,int y){
+    
     while(1){
-        printf("请输入要排查的坐标：");
-        scanf("%d %d",&x,&y);
-
         if(x>=1&&x<=row&&y>=1&&y<=col){
             if(show[x][y]=='*'){
                 if(mine[x][y]=='1'){
@@ -106,6 +101,8 @@ void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS],int row,int col){
         else{
             printf("坐标非法！请重新输入！\n");
         }
+        printf("请输入要排查的坐标：");
+        scanf("%d %d",&x,&y);
     }
 
 }

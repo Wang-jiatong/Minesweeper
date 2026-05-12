@@ -19,7 +19,7 @@ void DisplayBoard(char board[ROWS][COLS],int row,int col);
 //布置雷
 void SetMine(char board[ROWS][COLS],int row,int col);
 //排查雷
-void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS],int row,int col); 
+void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS],int row,int col,int x,int y); 
 //统计周围有几个雷
 int MineAround(char mine[ROWS][COLS],int x,int y);
 //判断是否排查了所有雷

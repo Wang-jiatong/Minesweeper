@@ -16,15 +16,26 @@ void game(){
     //初始化
     //mine在没有布置雷时，所有元素都为'0'
     //show在没有布置显示盘时，所有元素都为'*'
-    InitBoard(mine,ROWS,COLS,'0');
     InitBoard(show,ROWS,COLS,'*');
     DisplayBoard(show,ROW,COL);
-
-    //布置雷
-    SetMine(mine,ROW,COL);
+    
+    //读取第一次输入
+    int x=0;
+    int y=0;
+    printf("请输入要排查的坐标：");
+    scanf("%d %d",&x,&y);
+    //周围不能有雷
+    //注意：自己也不能是雷
+    int count=1;
+    while(count!=0){
+        //布置雷
+        InitBoard(mine,ROWS,COLS,'0');
+        SetMine(mine,ROW,COL);
+        DisplayBoard(mine,ROW,COL);
+        count=MineAround(mine,x,y)+mine[x][y]-'0';
+    }
     //排查雷
-    FindMine(mine,show,ROW,COL);
-
+    FindMine(mine,show,ROW,COL,x,y);
 }
 
 int main(){
