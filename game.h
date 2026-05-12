@@ -22,5 +22,11 @@ void SetMine(char board[ROWS][COLS],int row,int col);
 void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS],int row,int col); 
 //统计周围有几个雷
 int MineAround(char mine[ROWS][COLS],int x,int y);
+//判断是否排查了所有雷
+int IsWin(char show[ROWS][COLS],char mine[ROWS][COLS],int row,int col);
+//扩展排查
+void Expand(char show[ROWS][COLS],char mine[ROWS][COLS],int row,int col,int x,int y);
+
+
 
 
