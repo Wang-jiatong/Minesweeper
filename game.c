@@ -10,11 +10,11 @@ void InitBoard(char board[ROWS][COLS],int rows,int cols,char ch){
 
 void DisplayBoard(char board[ROWS][COLS],int row,int col){
     for(int j=0;j<=col;j++){
-        printf("%d ",j);
+        printf("%2d",j); 
     }
     printf("\n");
     for(int i=1;i<=row;i++){
-        printf("%d ",i);
+        printf("%2d ",i);
         for(int j=1;j<=col;j++){
             printf("%c ",board[i][j]);
         }
@@ -22,9 +22,9 @@ void DisplayBoard(char board[ROWS][COLS],int row,int col){
     }
 }
 
-void SetMine(char board[ROWS][COLS],int row,int col){
+void SetMine(char board[ROWS][COLS],int row,int col,int num){
     int count=0;
-    while(count<NUM){
+    while(count<num){
         int x=rand()%row+1;
         int y=rand()%col+1;
         if(board[x][y]=='0'){
@@ -78,17 +78,17 @@ void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS],int row,int col,int x,
             if(show[x][y]=='*'){
                 if(mine[x][y]=='1'){
                     printf("很遗憾，你踩到雷了！\n");
-                    DisplayBoard(mine,ROW,COL);
+                    DisplayBoard(mine,row,col);
                     break;
                 }
                 else{
-                    Expand(show,mine,ROW,COL,x,y);
+                    Expand(show,mine,row,col,x,y);
                     system("cls");
-                    DisplayBoard(show,ROW,COL);
+                    DisplayBoard(show,row,col);
                     //判断是否排查了所有雷
-                    if(IsWin(show,mine,ROW,COL)){
+                    if(IsWin(show,mine,row,col)){
                         printf("恭喜你，你排查了所有雷！\n");
-                        DisplayBoard(mine,ROW,COL);
+                        DisplayBoard(mine,row,col);
                         break;
                     }
                 }

@@ -8,16 +8,31 @@ void menu(){
 
    }
 
-void game(){
+void game(int mode){
     system("cls");
     printf("游戏开始\n");
+    int row=0;
+    int col=0;
+    int num=0;
+    if(mode==1){ 
+        row=EASY_ROW;
+        col=EASY_COL;
+        num=EASY_NUM;
+    }
+    else{
+        row=HARD_ROW;
+        col=HARD_COL;
+        num=HARD_NUM;
+    }
+    int rows=row+2;
+    int cols=col+2;
     char mine[ROWS][COLS]={0};//雷盘
     char show[ROWS][COLS]={0};//显示盘
     //初始化
     //mine在没有布置雷时，所有元素都为'0'
     //show在没有布置显示盘时，所有元素都为'*'
-    InitBoard(show,ROWS,COLS,'*');
-    DisplayBoard(show,ROW,COL);
+    InitBoard(show,rows,cols,'*');
+    DisplayBoard(show,row,col);
     
     //读取第一次输入
     int x=0;
@@ -29,13 +44,12 @@ void game(){
     int count=1;
     while(count!=0){
         //布置雷
-        InitBoard(mine,ROWS,COLS,'0');
-        SetMine(mine,ROW,COL);
-        DisplayBoard(mine,ROW,COL);
+        InitBoard(mine,rows,cols,'0');
+        SetMine(mine,row,col,num);
         count=MineAround(mine,x,y)+mine[x][y]-'0';
     }
     //排查雷
-    FindMine(mine,show,ROW,COL,x,y);
+    FindMine(mine,show,row,col,x,y);
 }
 
 int main(){
@@ -49,11 +63,11 @@ int main(){
         switch(input){
             case 1:
                 printf("简单模式\n");
-                game();
+                game(1);
                 break;
             case 2:
                 printf("困难模式\n");
-                game();
+                game(2);
                 break;
             case 0:
                 printf("退出游戏\n");
